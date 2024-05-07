@@ -1,8 +1,12 @@
 package com.example.auth_service.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
 @Table
 @Entity
@@ -14,4 +18,5 @@ public class Role {
     @Column(name = "role")
     @Enumerated(EnumType.STRING)
     private RoleName role;
+
 }
