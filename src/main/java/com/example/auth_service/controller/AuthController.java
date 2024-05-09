@@ -25,8 +25,5 @@ public class AuthController {
     public JwtAuthenticationResponse signIn(@RequestBody UserDto userDto) {
         return authenticationService.signIn(userDto);
     }
-    @PostMapping("/check")
-    public ResponseEntity<?> saveUser(@RequestBody UserDto userDto) {
-        return ResponseEntity.ok(authenticationService.saveUser(userDto));
-    }
+
 }

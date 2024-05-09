@@ -17,6 +17,7 @@ public class AuthenticationService {
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
     private final PasswordEncoder passwordEncoder;
+
     public JwtAuthenticationResponse signUp(UserDto userDto) {
 
         var user = User.builder()
@@ -34,21 +35,12 @@ public class AuthenticationService {
     public JwtAuthenticationResponse signIn(UserDto userDto) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(userDto.getUsername(), userDto.getPassword()
-        ));
+                ));
         var user = userService
                 .userDetailsService()
                 .loadUserByUsername(userDto.getUsername());
 
         var jwt = jwtService.generateToken(user);
         return new JwtAuthenticationResponse(jwt);
-    }
-    public User saveUser(UserDto userDto) {
-        var user = User.builder()
-                .username(userDto.getUsername())
-                .password(passwordEncoder.encode(userDto.getPassword()))
-                .role(RoleName.ROLE_USER)
-                .build();
-
-        return userService.create(user);
     }
 }
