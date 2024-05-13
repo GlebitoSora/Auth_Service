@@ -6,6 +6,6 @@ import java.io.Serializable;
 @Data
 @Embeddable
 public class ModularDiaryPK  implements Serializable {
-    private long studentId;
-    private long disciplineId;
+    private long student;
+    private long discipline;
 }

@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class Audience {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "audience_id")
     private long id;
     @Column(name = "audience_number")
     private int audienceNumber;
