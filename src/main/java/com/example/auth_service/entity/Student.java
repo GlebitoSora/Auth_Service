@@ -17,6 +17,6 @@ public class Student {
     private long id;
     @Column(name = "name")
     private String name;
-    @Column(name = "groupOfStudents")
+    @Column(name = "group_of_Students")
     private String group;
 }
