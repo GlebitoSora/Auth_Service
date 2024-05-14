@@ -2,12 +2,14 @@ package com.example.auth_service.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Builder
 @Data
 @Table
 public class Student {
@@ -19,4 +21,6 @@ public class Student {
     private String name;
     @Column(name = "group_of_Students")
     private String group;
+    @Column(name = "phone_number")
+    private String phoneNumber;
 }

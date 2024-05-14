@@ -17,13 +17,21 @@ public class AuthController {
     private final AuthenticationService authenticationService;
 
     @PostMapping("/signup")
-    public JwtAuthenticationResponse signUp(@RequestBody UserDto userDto) {
-        return authenticationService.signUp(userDto);
+    public ResponseEntity<?> signUp(@RequestBody UserDto userDto) {
+        try {
+            return ResponseEntity.ok(authenticationService.signUp(userDto));
+        } catch (Exception e){
+            return ResponseEntity.badRequest().body(e);
+        }
     }
 
     @PostMapping("/signin")
-    public JwtAuthenticationResponse signIn(@RequestBody UserDto userDto) {
-        return authenticationService.signIn(userDto);
+    public ResponseEntity<?> signIn(@RequestBody UserDto userDto) {
+        try {
+            return ResponseEntity.ok(authenticationService.signIn(userDto));
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e);
+        }
     }
 
 }
