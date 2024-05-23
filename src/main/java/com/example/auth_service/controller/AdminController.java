@@ -1,11 +1,8 @@
 package com.example.auth_service.controller;
 
-import com.example.auth_service.dto.StudentDto;
-import com.example.auth_service.dto.TutorDto;
-import com.example.auth_service.entity.Student;
-import com.example.auth_service.entity.Tutor;
-import com.example.auth_service.repository.StudentRepository;
-import com.example.auth_service.repository.TutorRepository;
+import com.example.auth_service.dto.*;
+import com.example.auth_service.entity.*;
+import com.example.auth_service.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +13,9 @@ import org.springframework.web.bind.annotation.*;
 public class AdminController {
     private final StudentRepository studentRepository;
     private final TutorRepository tutorRepository;
+    private final LessonRepository lessonRepository;
+    private final AudienceRepository audienceRepository;
+    private final DisciplineRepository disciplineRepository;
     @PostMapping("/add-student")
     public ResponseEntity<?> addStudent(@RequestBody StudentDto studentDto){
         if (studentRepository.existsByPhoneNumber(studentDto.getPhoneNumber())){
@@ -45,5 +45,37 @@ public class AdminController {
             tutorRepository.save(tutor);
             return ResponseEntity.ok(tutor);
         }
+    }
+    @PostMapping("/add-lesson")
+    public ResponseEntity<?> addLesson(@RequestBody LessonDto lessonDto){
+        var lesson = Lesson.builder()
+                .group(lessonDto.getGroup())
+                .typeOfLesson(lessonDto.getTypeOfLesson())
+                .audience(audienceRepository.findByAudienceNumber(lessonDto.getAudienceNumber()))
+                .description(lessonDto.getDescription())
+                .dateTime(lessonDto.getTime())
+                .tutor(tutorRepository.findByName(lessonDto.getTutorName()))
+                .discipline(disciplineRepository.findByName(lessonDto.getDisciplineName()))
+                .build();
+        lessonRepository.save(lesson);
+        return ResponseEntity.ok(lesson);
+    }
+    @PostMapping("/add-audience")
+    public ResponseEntity<?> addAudience(@RequestBody AudienceDto audienceDto){
+        var audience = Audience.builder()
+                .audienceNumber(audienceDto.getAudienceNumber())
+                .building(audienceDto.getBuilding())
+                .build();
+        audienceRepository.save(audience);
+        return ResponseEntity.ok(audience);
+    }
+    @PostMapping("/add-discipline")
+    public ResponseEntity<?> addDiscipline(@RequestBody DisciplineDto disciplineDto){
+        var discipline = Discipline.builder()
+                .name(disciplineDto.getName())
+                .department(disciplineDto.getDepartment())
+                .build();
+        disciplineRepository.save(discipline);
+        return ResponseEntity.ok(discipline);
     }
 }

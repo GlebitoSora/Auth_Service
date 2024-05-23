@@ -10,4 +10,6 @@ import java.util.List;
 public interface StudentRepository extends JpaRepository<Student, Long> {
     boolean existsByPhoneNumber(String phoneNumber);
     List<Student> findByGroup(String group);
+    Student findByNameAndGroup(String name, String group);
+    Student findByName(String name);
 }

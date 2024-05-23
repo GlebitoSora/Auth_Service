@@ -2,12 +2,12 @@ package com.example.auth_service.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-
-
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -28,13 +28,12 @@ public class Lesson {
     @Enumerated(EnumType.STRING)
     private TypeOfLesson typeOfLesson;
     @ManyToOne
-    @JoinColumn(name = "tutor_id", insertable = false, updatable = false)
+    @JoinColumn(name = "tutor_id")
     private Tutor tutor;
     @ManyToOne
-    @JoinColumn(name = "discipline_id", insertable = false, updatable = false)
+    @JoinColumn(name = "discipline_id")
     private Discipline discipline;
     @ManyToOne
-    @JoinColumn(name = "audience_id", insertable = false, updatable = false)
+    @JoinColumn(name = "audience_id")
     private Audience audience;
-
 }
