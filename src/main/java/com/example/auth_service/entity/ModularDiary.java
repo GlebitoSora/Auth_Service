@@ -1,5 +1,6 @@
 package com.example.auth_service.entity;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,6 +12,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @Table(name = "modular_diary")
+@Schema(name = "Модульный журнал")
 public class ModularDiary {
     @EmbeddedId
     private ModularDiaryPK modularDiaryPK;

@@ -1,5 +1,6 @@
 package com.example.auth_service.entity;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,6 +13,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @Data
 @Table(name = "student")
+@Schema(name = "Студент")
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

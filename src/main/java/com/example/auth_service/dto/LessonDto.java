@@ -6,6 +6,7 @@ import com.example.auth_service.entity.Tutor;
 import com.example.auth_service.entity.TypeOfLesson;
 import com.example.auth_service.repository.AudienceRepository;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import lombok.AllArgsConstructor;
@@ -17,6 +18,7 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Schema(name = "Запрос с данными расписания")
 public class LessonDto {
     private String group;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")

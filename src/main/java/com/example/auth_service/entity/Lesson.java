@@ -1,5 +1,6 @@
 package com.example.auth_service.entity;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,6 +14,7 @@ import java.time.LocalDateTime;
 @Entity
 @Data
 @Table(name = "lessons")
+@Schema(name = "Расписание")
 public class Lesson {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

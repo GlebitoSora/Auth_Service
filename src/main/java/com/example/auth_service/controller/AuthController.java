@@ -3,6 +3,8 @@ package com.example.auth_service.controller;
 import com.example.auth_service.dto.JwtAuthenticationResponse;
 import com.example.auth_service.dto.UserDto;
 import com.example.auth_service.service.AuthenticationService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,25 +15,26 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/auth")
+@Tag(name = "Контроллер авторизации и аутентификации пользователей")
 public class AuthController {
     private final AuthenticationService authenticationService;
-
+    @Operation(
+            summary = "Регистрация пользователя",
+            description = "Позволяет зарегистрировать пользователя"
+    )
     @PostMapping("/signup")
-    public ResponseEntity<?> signUp(@RequestBody UserDto userDto) {
-        try {
-            return ResponseEntity.ok(authenticationService.signUp(userDto));
-        } catch (Exception e){
-            return ResponseEntity.badRequest().body(e);
-        }
+    public JwtAuthenticationResponse signUp(@RequestBody UserDto userDto) {
+            return authenticationService.signUp(userDto);
     }
-
+    @Operation(
+            summary = "Авторизация пользователя",
+            description = "Позволяет авторизировать пользователя"
+    )
     @PostMapping("/signin")
-    public ResponseEntity<?> signIn(@RequestBody UserDto userDto) {
-        try {
-            return ResponseEntity.ok(authenticationService.signIn(userDto));
-        }catch (Exception e){
-            return ResponseEntity.badRequest().body(e);
-        }
+    public JwtAuthenticationResponse signIn(@RequestBody UserDto userDto) {
+
+        return authenticationService.signIn(userDto);
+
     }
 
 }
