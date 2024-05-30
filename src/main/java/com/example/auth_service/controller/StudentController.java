@@ -53,4 +53,9 @@ public class StudentController {
         Student student = studentRepository.findByName(name);
         return modularDiaryRepository.findByStudent(student);
     }
+    @GetMapping("/get-group/{name}")
+    public String getGroup(@PathVariable String name){
+        Student student = studentRepository.findByName(name);
+        return student.getGroup();
+    }
 }
